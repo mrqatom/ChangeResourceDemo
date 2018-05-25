@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.atom.mygradletest"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders.put("appName", "gradleTest")
+    }
+    aaptOptions {
+        cruncherEnabled = false
+    }
+    signingConfigs {
+        release {
+            keyAlias 'gradle'
+            keyPassword '123456'
+            storeFile file('gradle.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "defind"
+    productFlavors {
+        defind1 {
+            dimension "defind"
+            applicationId "com.atom.defind1"
+            manifestPlaceholders.put("appName", "定制1")
+        }
+        defind2 {
+            dimension "defind"
+            applicationId "com.atom.defind2"
+            manifestPlaceholders.put("appName", "定制2")
+        }
+        defind3 {
+            dimension "defind"
+            applicationId "com.atom.defind3"
+            manifestPlaceholders.put("appName", "定制3")
+        }
+        defind4 {
+            dimension "defind"
+            applicationId "com.atom.defind4"
+            manifestPlaceholders.put("appName", "定制4")
+        }
+        defind5 {
+            dimension "defind"
+            applicationId "com.atom.defind5"
+            manifestPlaceholders.put("appName", "定制5")
+        }
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+project.afterEvaluate {
+
+    project.android.applicationVariants.all { variant ->
+        String variantName = variant.name.capitalize()
+        def variantFlavorName = variant.flavorName
+        Task preBuild = project.tasks["pre${variantName}Build"]
+
+        preBuild.doFirst {
+            project.copy {
+                from "../defindpic/${variantFlavorName}"
+                into "../app/src/main/res"
+            }
+            println variantFlavorName
+        }
+    }
+}
