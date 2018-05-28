@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply from: 'flavors.gradle'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -29,34 +29,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions "defind"
-    productFlavors {
-        defind1 {
-            dimension "defind"
-            applicationId "com.atom.defind1"
-            manifestPlaceholders.put("appName", "定制1")
-        }
-        defind2 {
-            dimension "defind"
-            applicationId "com.atom.defind2"
-            manifestPlaceholders.put("appName", "定制2")
-        }
-        defind3 {
-            dimension "defind"
-            applicationId "com.atom.defind3"
-            manifestPlaceholders.put("appName", "定制3")
-        }
-        defind4 {
-            dimension "defind"
-            applicationId "com.atom.defind4"
-            manifestPlaceholders.put("appName", "定制4")
-        }
-        defind5 {
-            dimension "defind"
-            applicationId "com.atom.defind5"
-            manifestPlaceholders.put("appName", "定制5")
-        }
-    }
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -65,21 +37,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-}
-
-project.afterEvaluate {
-
-    project.android.applicationVariants.all { variant ->
-        String variantName = variant.name.capitalize()
-        def variantFlavorName = variant.flavorName
-        Task preBuild = project.tasks["pre${variantName}Build"]
-
-        preBuild.doFirst {
-            project.copy {
-                from "../defindpic/${variantFlavorName}"
-                into "../app/src/main/res"
-            }
-            println variantFlavorName
-        }
-    }
 }

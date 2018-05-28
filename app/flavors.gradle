@@ -1,0 +1,51 @@
+android{
+    flavorDimensions "defind"
+    productFlavors {
+        defind1 {
+            dimension "defind"
+            applicationId "com.atom.defind1"
+            manifestPlaceholders.put("appName", "定制1")
+        }
+        defind2 {
+            dimension "defind"
+            applicationId "com.atom.defind2"
+            manifestPlaceholders.put("appName", "定制2")
+        }
+        defind3 {
+            dimension "defind"
+            applicationId "com.atom.defind3"
+            manifestPlaceholders.put("appName", "定制3")
+        }
+        defind4 {
+            dimension "defind"
+            applicationId "com.atom.defind4"
+            manifestPlaceholders.put("appName", "定制4")
+        }
+        defind5 {
+            dimension "defind"
+            applicationId "com.atom.defind5"
+            manifestPlaceholders.put("appName", "定制5")
+        }
+    }
+}
+
+project.afterEvaluate {
+    project.android.applicationVariants.all { variant ->
+        String variantName = variant.name.capitalize()
+        def variantFlavorName = variant.flavorName
+        Task preBuild = project.tasks["pre${variantName}Build"]
+
+        preBuild.doFirst {
+            project.copy {
+                from "../defindpic/${variantFlavorName}"
+                into "../app/src/main/res"
+            }
+            println variantFlavorName
+        }
+    }
+}
+
+def flavorNames = ["defind1","defind2","defind3","defind4","defind5"]
+def applicationIds = ["com.atom.defind1","com.atom.defind2","com.atom.defind3",
+                    "com.atom.defind4","com.atom.defind5"]
+def appNames = ["定制1","定制2","定制3","定制4","定制5"]
