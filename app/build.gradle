@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.atom.resourceflavors' //应用插件
 apply from: 'flavors.gradle'
+
+rfp{
+    resourceDir 'defindpic'
+    appName 'app'
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
