@@ -11,15 +11,38 @@ dependencies {
 
 apply plugin: 'maven-publish'
 
+//源代码打包任务
+task sourcesJar(type: Jar) {
+    baseName 'test'
+    classifier 'sources'//分类器,区分其他jar包
+    from sourceSets.main.allSource
+}
+
+//文档包任务
+task docJar(type: Jar, dependsOn: [javadoc, groovydoc]) {
+    baseName 'test'
+    classifier 'doc'//分类器,区分其他jar包
+    from javadoc.destinationDir, groovydoc.destinationDir
+}
+
+//配置工程工件,也就是jar产出的配置
+artifacts {
+    archives sourcesJar
+    archives docJar
+}
+
 publishing {
     publications {
 
         mavenJava(MavenPublication) {
             from components.java
 
+            artifact sourcesJar
+            artifact docJar
+
             groupId 'com.atom.plugin'
             artifactId 'ResourceFlavorsPlugin'
-            version '1.0.3'
+            version '1.1.0'
             //pom文件配置
             pom.withXml {
                 def root = asNode()
