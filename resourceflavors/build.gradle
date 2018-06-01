@@ -19,7 +19,7 @@ publishing {
 
             groupId 'com.atom.plugin'
             artifactId 'ResourceFlavorsPlugin'
-            version '1.0.1'
+            version '1.0.3'
             //pom文件配置
             pom.withXml {
                 def root = asNode()
