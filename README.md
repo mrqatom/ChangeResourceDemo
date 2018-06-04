@@ -18,7 +18,7 @@ apply plugin: 'com.atom.resourceflavors' //应用插件
 
 rfp{
 
-    resourceDir 'definepic'//需要替换的资源文件路径名，必须在
+    resourceDir 'definepic'//需要替换的资源文件路径名，必须在根目录内
     
     appName 'app'//主项目名字
     
