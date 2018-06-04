@@ -25,3 +25,5 @@ rfp{
 }
 
 你需要在resourceDir下以你的渠道命名文件下，然后按res目录的结构放入资源文件，实现替换，具体可参照本demo
+
+## 查看文档：https://blog.csdn.net/verymrq/article/details/80564048
