@@ -1,15 +1,15 @@
-def flavorNames = ["defind1", "defind2", "defind3", "defind4", "defind5"]
-def applicationIds = ["com.atom.defind1", "com.atom.defind2", "com.atom.defind3",
-                      "com.atom.defind4", "com.atom.defind5"]
+def flavorNames = ["define1", "define2", "define3", "define4", "define5"]
+def applicationIds = ["com.atom.define1", "com.atom.define2", "com.atom.define3",
+                      "com.atom.define4", "com.atom.define5"]
 def appNames = ["定制1", "定制2", "定制3", "定制4", "定制5"]
 
 android {
-    flavorDimensions "defind"
+    flavorDimensions "define"
     productFlavors {
         0.upto(flavorNames.size()-1) { index ->
             def flavor = flavorNames.get(index)
             "$flavor" {
-                dimension "defind"
+                dimension "define"
                 applicationId applicationIds.get(index)
                 manifestPlaceholders.put("appName", appNames.get(index))
             }
