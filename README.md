@@ -17,8 +17,11 @@ apply plugin: 'com.atom.resourceflavors' //应用插件
 3、主项目加入配置参数
 
 rfp{
+
     resourceDir 'definepic'//需要替换的资源文件路径名，必须在
+    
     appName 'app'//主项目名字
+    
 }
 
 你需要在resourceDir下以你的渠道命名文件下，然后按res目录的结构放入资源文件，实现替换，具体可参照本demo
