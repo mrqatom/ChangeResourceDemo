@@ -36,7 +36,10 @@ public class ResourceFlavorsPlugin implements Plugin<Project> {
                         from "../${resourceDir}/${variantFlavorName}"
                         into "../${appName}/src/main/res"
                     }
-                    println "${variantFlavorName} resource is changed!"
+                    println "../${resourceDir}/${variantFlavorName}"
+                    println "../${appName}/src/main/res"
+                    if (workResult.getDidWork())
+                        println "${variantFlavorName} resource is changed!"
                 }
             }
         }

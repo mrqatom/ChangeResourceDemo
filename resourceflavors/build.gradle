@@ -42,7 +42,7 @@ publishing {
 
             groupId 'com.atom.plugin'
             artifactId 'ResourceFlavorsPlugin'
-            version '1.1.0'
+            version '2.1.0'
             //pom文件配置
             pom.withXml {
                 def root = asNode()
@@ -73,12 +73,12 @@ buildscript {
 apply plugin: 'com.jfrog.bintray'
 bintray {
     user = 'mrqatom'
-    key = userkey
+//    key = userkey
     //上传的内容
     publications = ['mavenJava']
     pkg {
         repo = 'define_flavor'//需要上传的仓库名
-        name = 'resourceflavors'//上传到jcenter的项目名
+        name = 'resourceflavor'//上传到jcenter的项目名
         publish = true
         licenses = ['Apache-2.0']//开源许可
         //这里的地址是不会验证的,随便输入都可以,不配置也可以
