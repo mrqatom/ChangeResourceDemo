@@ -8,7 +8,7 @@
 
 1、在根目录的依赖中加入
 
-classpath 'com.atom.plugin:ResourceFlavorsPlugin:1.1.0'
+classpath 'com.atom.plugin:ResourceFlavorsPlugin:2.1.0'
 
 2、在主项目build文件加入
 
